@@ -31,6 +31,12 @@ research = [
     "mwxml>=0.3",
     "mwparserfromhell>=0.6",
 ]
+# Phase 6 anime subtitle index. Text subs extract with ffmpeg; DBZ/Super ship
+# only PGS bitmap subs -> OCR'd with Tesseract (a system install) via pgsrip.
+subs = [
+    "pgsrip>=0.1.11",
+    "static-ffmpeg>=2.5",
+]
 
 [project.scripts]
 gfxorch = "gfxorch.cli:main"

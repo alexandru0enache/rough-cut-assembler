@@ -40,7 +40,7 @@ Automate the mechanical ~50% of the edit: transcribe the VO, find where each of 
 | 3 | Manga page selection (`timeline.json`) | [03_beats_pages.md](03_beats_pages.md) | **done** — `roughcut/{pages,cbr}.py`, `.cbr` via 7-Zip |
 | 4 | Rough-cut render (Remotion) | [04_roughcut_render.md](04_roughcut_render.md) | **done** — `RoughCut.tsx` + `sync-timeline.mjs` + `render-roughcut.mjs` |
 | 5 | Resolve FCPXML hand-off | [05_resolve_export.md](05_resolve_export.md) | after v1 trusted |
-| 6 | Anime subtitle extraction | [06_anime_subs.md](06_anime_subs.md) | off critical path |
+| 6 | Anime subtitle index (Layer 2) | [06_anime_subs.md](06_anime_subs.md) | **in progress** — `roughcut/subs.py` + `roughcut subs` build/query; DB text extract verified, DBZ/Super PGS→OCR path (`pgsrip`) coded, not yet run at scale |
 | 7 | Direction pass (shot specs) | [07_direction_pass.md](07_direction_pass.md) | **done** — `spec` blocks in beats.yaml, `roughcut direct`, `overrides.yaml`, spec chips in the cut |
 | 8 | Hardening | [08_hardening.md](08_hardening.md) | **done** — `roughcut check`, `tests/test_roughcut.py` (15), page cursor, rules-block titles, `render:` source, card portraits |
 | 9 | Local research corpus | [09_research_corpus.md](09_research_corpus.md) | **done** — `gfxorch wiki build/query/get`, 9,541-article SQLite FTS5 from the Fandom dump |
@@ -58,7 +58,8 @@ gfxorch roughcut transcribe     # Phase 1
 gfxorch roughcut align          # Phase 1
 gfxorch roughcut beats          # Phase 2  (seed beats.yaml)
 gfxorch roughcut pages          # Phase 3  (-> timeline.json)
-gfxorch roughcut subs           # Phase 6
+gfxorch roughcut subs           # Phase 6  (build the anime subtitle index)
+gfxorch roughcut subs --query "..."   # Phase 6  (search it)
 ```
 
 `remotion/package.json`: `npm run roughcut` = `sync-timeline.mjs` + `render-roughcut.mjs`.
