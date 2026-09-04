@@ -1,0 +1,34 @@
+{
+  "name": "power-streak-remotion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Data-driven DBZ chapter-tracking HUD cards, rendered from events.yaml.",
+  "scripts": {
+    "sync": "node scripts/sync-data.mjs",
+    "chrome": "node scripts/make-chrome.mjs",
+    "dev": "npm run sync && remotion studio",
+    "render": "npm run sync && node scripts/render.mjs",
+    "still": "npm run sync && remotion still PowerStreakCard out/still.png --props=out/props/db_02_roshi.json",
+    "roughcut:sync": "node scripts/sync-timeline.mjs",
+    "roughcut:render": "node scripts/render-roughcut.mjs",
+    "roughcut": "node scripts/sync-timeline.mjs && node scripts/render-roughcut.mjs"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.520",
+    "@remotion/renderer": "^4.0.0",
+    "@remotion/zod-types": "^4.0.520",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/react": "^18.3.3",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.5.4"
+  }
+}

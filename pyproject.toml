@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rough-cut-assembler"
+version = "0.1.0"
+description = "Automated rough-cut assembler for the DBYPE Dragon Ball videos: VO + script -> timed edit blueprint + motion graphics + Remotion rough cut. Package/command name stays `gfxorch`."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+# Installed only in the environment that talks to Resolve's Python bridge.
+resolve = []
+# Rough-cut assembler: transcribe the VO + align it to the script.
+# See docs/plans/video-assembler/. faster-whisper bundles its own ffmpeg (PyAV).
+roughcut = [
+    "faster-whisper>=1.0",
+    "static-ffmpeg>=2.5",
+    "opentimelineio>=0.18",          # Phase 5: emit .otio / FCPXML / EDL for Resolve
+    "otio-fcpx-xml-adapter>=1.0",
+    "otio-cmx3600-adapter>=1.0",
+]
+# Local research corpus: Fandom XML dump -> SQLite FTS5 (gfxorch wiki build/query).
+research = [
+    "mwxml>=0.3",
+    "mwparserfromhell>=0.6",
+]
+
+[project.scripts]
+gfxorch = "gfxorch.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gfxorch"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

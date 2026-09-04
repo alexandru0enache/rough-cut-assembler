@@ -1,0 +1,14 @@
+# Pin exact manga pages per beat id. Entry forms (first that resolves wins):
+#   - an absolute path to an image
+#   - a path relative to the manga root  (e.g. "09 Saiyan Arc/Chapter 200 - .../003.jpg")
+#   - chapter/page shorthand              "ch. 4 p. 3"  |  "ch. 4 p. 3-5"  |  "ch. 4"
+# The shorthand chapter number is the library's continuous number.
+#
+# This file is the vision/hand pass: the pipeline narrows a beat to its chapter
+# span, you (or Claude, reading the candidate pages) pin the panels that match.
+
+demo_roshi__016:
+  - "ch. 4 p. 3"          # bold Roshi hero panel ("COME TO ME, IMMORTAL PHOENIX!!!")
+
+demo_roshi__017:
+  - "ch. 4 p. 5"          # Goku first rides the Kinto'un, Roshi watching

@@ -1,0 +1,2321 @@
+{
+  "source": "E:\\studio_root\\dev\\tools\\gfx-orchestrator\\ae\\scouter_fullscreen.aep2json.json",
+  "rootCompId": "48",
+  "comps": {
+    "48": {
+      "name": "full_screen_scan",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationF": 900,
+      "layers": [
+        {
+          "index": 1,
+          "name": "comparison_power_level",
+          "type": "precomp",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 630.5,
+          "startTime": 118,
+          "transform": {
+            "position": {
+              "v": [
+                449.682342529297,
+                671.976470947266,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                1000,
+                1000,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                10,
+                10,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "precomp": {
+            "compId": "178",
+            "name": "comparison_power_level"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Adjustment Layer 1",
+          "type": "adjustment",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 97,
+          "outPoint": 140,
+          "startTime": -2,
+          "transform": {
+            "position": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Mosaic",
+              "name": "Mosaic",
+              "hBlocks": 1000,
+              "vBlocks": 1000
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "name": "straight_line_02",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                160,
+                970,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -800,
+                180,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": -90
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  80,
+                  180
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  40,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  80,
+                  180
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(193,175,23,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "name": "straight_line_01",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                960,
+                790,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                0,
+                0,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  720,
+                  180
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  40,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  720,
+                  180
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(193,175,23,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "name": "circle_stroke_03",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -20,
+                -40,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                22.4528198242188,
+                45.4716949462891,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                120,
+                120,
+                100
+              ]
+            },
+            "rotation": {
+              "keys": [
+                {
+                  "f": 3,
+                  "v": 0
+                },
+                {
+                  "f": 47,
+                  "v": 257
+                }
+              ]
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 170,
+              "ry": 170,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  78,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "name": "circle_stroke_02",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -20,
+                -40,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                22.4528198242188,
+                45.4716949462891,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                58.9999999999998,
+                59,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 170,
+              "ry": 170,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "name": "circle_stroke_01",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -20,
+                -40,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                22.4528198242188,
+                45.4716949462891,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                66.9999999999999,
+                67,
+                100
+              ]
+            },
+            "rotation": {
+              "keys": [
+                {
+                  "f": 3,
+                  "v": 0
+                },
+                {
+                  "f": 46,
+                  "v": 720
+                }
+              ]
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 170,
+              "ry": 170,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  87,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "name": "circle_filled_01",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "keys": [
+                {
+                  "f": 57,
+                  "v": [
+                    960,
+                    540,
+                    0
+                  ]
+                },
+                {
+                  "f": 67,
+                  "v": [
+                    720.502090454102,
+                    354.72802734375,
+                    0
+                  ]
+                },
+                {
+                  "f": 77,
+                  "v": [
+                    1402.84518432617,
+                    216.903762817383,
+                    0
+                  ]
+                },
+                {
+                  "f": 87,
+                  "v": [
+                    521.673629760742,
+                    711.715484619141,
+                    0
+                  ]
+                },
+                {
+                  "f": 97,
+                  "v": [
+                    982.594131469727,
+                    424.769882202148,
+                    0
+                  ]
+                }
+              ]
+            },
+            "anchor": {
+              "v": [
+                -20,
+                -40,
+                0
+              ]
+            },
+            "scale": {
+              "keys": [
+                {
+                  "f": 0,
+                  "v": [
+                    0,
+                    0,
+                    100
+                  ]
+                },
+                {
+                  "f": 13,
+                  "v": [
+                    100,
+                    100,
+                    100
+                  ]
+                },
+                {
+                  "f": 67,
+                  "v": [
+                    100,
+                    100,
+                    100
+                  ]
+                },
+                {
+                  "f": 77,
+                  "v": [
+                    78,
+                    78,
+                    100
+                  ]
+                },
+                {
+                  "f": 87,
+                  "v": [
+                    61,
+                    61,
+                    100
+                  ]
+                },
+                {
+                  "f": 97,
+                  "v": [
+                    114,
+                    114,
+                    100
+                  ]
+                }
+              ]
+            },
+            "rotation": {
+              "keys": [
+                {
+                  "f": 3,
+                  "v": 0
+                },
+                {
+                  "f": 46,
+                  "v": 720
+                },
+                {
+                  "f": 51,
+                  "v": 720
+                }
+              ]
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 40,
+              "ry": 40,
+              "stroke": {
+                "color": "rgba(255,255,255,1)",
+                "width": 15,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "name": "triangle_04",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                126,
+                -39,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -180.000016747451,
+                54.8079611150229,
+                0
+              ]
+            },
+            "scale": {
+              "keys": [
+                {
+                  "f": 3,
+                  "v": [
+                    0,
+                    0,
+                    100
+                  ]
+                },
+                {
+                  "f": 46,
+                  "v": [
+                    20,
+                    20,
+                    100
+                  ]
+                }
+              ]
+            },
+            "rotation": {
+              "v": 150
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "polygon",
+              "points": [
+                [
+                  1.59674407170503e-14,
+                  -260.768096208106
+                ],
+                [
+                  225.83179581272435,
+                  130.38404810405297
+                ],
+                [
+                  -225.83179581272435,
+                  130.38404810405297
+                ]
+              ],
+              "stroke": null,
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "name": "triangle_03",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -167,
+                -39,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -180.000016747451,
+                54.8079611150229,
+                0
+              ]
+            },
+            "scale": {
+              "keys": [
+                {
+                  "f": 5,
+                  "v": [
+                    0,
+                    0,
+                    100
+                  ]
+                },
+                {
+                  "f": 48,
+                  "v": [
+                    20,
+                    20,
+                    100
+                  ]
+                }
+              ]
+            },
+            "rotation": {
+              "v": 210
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "polygon",
+              "points": [
+                [
+                  1.59674407170503e-14,
+                  -260.768096208106
+                ],
+                [
+                  225.83179581272435,
+                  130.38404810405297
+                ],
+                [
+                  -225.83179581272435,
+                  130.38404810405297
+                ]
+              ],
+              "stroke": null,
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "name": "triangle_02",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -20,
+                -186.5,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -175.359012542495,
+                66.769520387324,
+                0
+              ]
+            },
+            "scale": {
+              "keys": [
+                {
+                  "f": 7,
+                  "v": [
+                    0,
+                    0,
+                    100
+                  ]
+                },
+                {
+                  "f": 37,
+                  "v": [
+                    20,
+                    20,
+                    100
+                  ]
+                }
+              ]
+            },
+            "rotation": {
+              "v": 60
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "polygon",
+              "points": [
+                [
+                  1.59674407170503e-14,
+                  -260.768096208106
+                ],
+                [
+                  225.83179581272435,
+                  130.38404810405297
+                ],
+                [
+                  -225.83179581272435,
+                  130.38404810405297
+                ]
+              ],
+              "stroke": null,
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "name": "triangle_01",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": 8,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 118,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                -20,
+                103,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -180.000016747451,
+                34.8079872829156,
+                0
+              ]
+            },
+            "scale": {
+              "keys": [
+                {
+                  "f": 9,
+                  "v": [
+                    0,
+                    0,
+                    100
+                  ]
+                },
+                {
+                  "f": 39,
+                  "v": [
+                    20,
+                    20,
+                    100
+                  ]
+                }
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "polygon",
+              "points": [
+                [
+                  1.59674407170503e-14,
+                  -260.768096208106
+                ],
+                [
+                  225.83179581272435,
+                  130.38404810405297
+                ],
+                [
+                  -225.83179581272435,
+                  130.38404810405297
+                ]
+              ],
+              "stroke": null,
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "name": "asfs 2",
+          "type": "text",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1411.87237548828,
+                930.38493347168,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                2.44140625,
+                -30.0140380859375,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                60,
+                60,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "text": {
+            "text": "asfs",
+            "font": "DBSScouter",
+            "size": 100,
+            "fill": "rgba(255,234,55,1)",
+            "justify": "CENTER_JUSTIFY"
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Posterize Time",
+              "name": "Decode In Speed"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "name": "asfs",
+          "type": "text",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                450.872375488281,
+                814.38493347168,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                2.44140625,
+                -30.0140380859375,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                60,
+                60,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "text": {
+            "text": "asfs",
+            "font": "DBSScouter",
+            "size": 100,
+            "fill": "rgba(255,234,55,1)",
+            "justify": "CENTER_JUSTIFY"
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Posterize Time",
+              "name": "Decode In Speed"
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "name": "asf -",
+          "type": "text",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                401.872375488281,
+                331.38493347168,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                2.44140625,
+                -30.0140380859375,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                60,
+                60,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "text": {
+            "text": "asf -",
+            "font": "DBSScouter",
+            "size": 100,
+            "fill": "rgba(255,234,55,1)",
+            "justify": "CENTER_JUSTIFY"
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Posterize Time",
+              "name": "Decode In Speed"
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "name": "asf",
+          "type": "text",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                440.774561185553,
+                252.867184543068,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                3.94504907878581,
+                22.4563803663761,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                137,
+                137,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "text": {
+            "text": "asf",
+            "font": "DBSScouter",
+            "size": 100,
+            "fill": "rgba(255,234,55,1)",
+            "justify": "CENTER_JUSTIFY"
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Posterize Time",
+              "name": "Decode In Speed"
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "name": "straight_line_04",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 922,
+          "startTime": 245,
+          "transform": {
+            "position": {
+              "v": [
+                309.131805419922,
+                385.368194580078,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -727.5,
+                180,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                72,
+                72,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  -616,
+                  180.368194580078
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  25,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "name": "straight_line_03",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 922,
+          "startTime": 245,
+          "transform": {
+            "position": {
+              "v": [
+                1616.13180541992,
+                937.368194580078,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -727.5,
+                180,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -800,
+                  180
+                ],
+                [
+                  -655,
+                  180
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  25,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "name": "horizontal_staright_line 2",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1480,
+                980,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -520,
+                -260,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -720,
+                  -260
+                ],
+                [
+                  -320,
+                  -260
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 15,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "name": "horizontal_staright_line",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                440,
+                280,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -520,
+                -260,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -720,
+                  -260
+                ],
+                [
+                  -320,
+                  -260
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "name": "outer_circle",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 913.75,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                0,
+                0,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                115,
+                115,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 275,
+              "ry": 275,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  8,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 275,
+              "ry": 275,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 10,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  6,
+                  79
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  278.260803222656,
+                  0
+                ],
+                [
+                  520,
+                  0
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "name": "Shape Layer 3",
+          "type": "shape",
+          "enabled": false,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 914,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1350,
+                540,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                390,
+                0,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  320,
+                  0
+                ],
+                [
+                  520,
+                  0
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "name": "arrow_description_1",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 913.75,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                539,
+                787.25,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                -421,
+                247.25,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -640,
+                  320
+                ],
+                [
+                  -380,
+                  320
+                ],
+                [
+                  -260,
+                  220
+                ]
+              ],
+              "inTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "path",
+              "closed": false,
+              "vertices": [
+                [
+                  -178.0625,
+                  161.9375
+                ],
+                [
+                  -280,
+                  200
+                ],
+                [
+                  -262.5,
+                  235.15625
+                ]
+              ],
+              "inTangents": [
+                [
+                  -2,
+                  0.5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "outTangents": [
+                [
+                  2,
+                  -0.5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "stroke": {
+                "color": "rgba(255,255,255,1)",
+                "width": 2,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": "rgba(255,234,55,1)",
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "name": "inner_circle",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 118,
+          "outPoint": 913.75,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                179.830993652344,
+                -49.1830825805664,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                115,
+                115,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 275,
+              "ry": 275,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  134,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 275,
+              "ry": 275,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  272,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            },
+            {
+              "kind": "ellipse",
+              "cx": 0,
+              "cy": 0,
+              "rx": 275,
+              "ry": 275,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 20,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  782,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "name": "Adjustment Layer 1",
+          "type": "solid",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 900,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 50
+            }
+          },
+          "solid": {
+            "color": "rgba(255,255,255,1)",
+            "w": 1920,
+            "h": 1080
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Tint",
+              "name": "Tint",
+              "mapWhite": "rgba(33,255,59,1)",
+              "mapBlack": "rgba(0,0,0,0)",
+              "amount": 100
+            }
+          ]
+        }
+      ]
+    },
+    "178": {
+      "name": "comparison_power_level",
+      "width": 2000,
+      "height": 2000,
+      "fps": 24,
+      "durationF": 410,
+      "layers": [
+        {
+          "index": 1,
+          "name": "square_stroke",
+          "type": "shape",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 410,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1000,
+                1000,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                0,
+                0,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "rect",
+              "x": -1000,
+              "y": -1000,
+              "w": 2000,
+              "h": 2000,
+              "round": 0,
+              "stroke": {
+                "color": "rgba(255,234,55,1)",
+                "width": 200,
+                "cap": "butt",
+                "join": "miter",
+                "dash": [
+                  10,
+                  10
+                ]
+              },
+              "fill": null,
+              "groupXf": null
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "name": "Adjustment Layer 1",
+          "type": "adjustment",
+          "enabled": true,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 410,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1000,
+                1000,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                960,
+                540,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                185.185185185185,
+                185.185185185185,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "effects": [
+            {
+              "matchName": "ADBE Mosaic",
+              "name": "Mosaic",
+              "hBlocks": 1000,
+              "vBlocks": 1000
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "name": "square_matte",
+          "type": "shape",
+          "enabled": false,
+          "blend": "NORMAL",
+          "parentIndex": null,
+          "trackMatte": null,
+          "inPoint": 0,
+          "outPoint": 410,
+          "startTime": 0,
+          "transform": {
+            "position": {
+              "v": [
+                1000,
+                1000,
+                0
+              ]
+            },
+            "anchor": {
+              "v": [
+                0,
+                0,
+                0
+              ]
+            },
+            "scale": {
+              "v": [
+                100,
+                100,
+                100
+              ]
+            },
+            "rotation": {
+              "v": 0
+            },
+            "opacity": {
+              "v": 100
+            }
+          },
+          "shapes": [
+            {
+              "kind": "rect",
+              "x": -1000,
+              "y": -1000,
+              "w": 2000,
+              "h": 2000,
+              "round": 0,
+              "stroke": null,
+              "fill": "rgba(255,253,239,1)",
+              "groupXf": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

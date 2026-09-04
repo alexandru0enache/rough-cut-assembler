@@ -1,0 +1,4 @@
+{
+  "_comment": "event id -> exact render filename (or absolute path). Overrides the fuzzy match in sync-data.mjs. Fill these for portraits the matcher gets wrong.",
+  "dbz_11_goku_ssj3": ""
+}

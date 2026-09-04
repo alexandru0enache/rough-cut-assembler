@@ -1,0 +1,41 @@
+# Minimal events.yaml for the rough-cut demo. Two reigns, real manga chapters.
+meta:
+  video_id: roughcut_demo
+  theme: dbz_power_streak
+  numbering:
+    DB:  { scheme: viz_continuous, total: 194 }
+    DBZ: { scheme: viz_z_restart, total: 325, continuous_offset: 194 }
+
+defaults:
+  disputed: false
+  co_holder: null
+  marker: null
+
+events:
+  - id: demo_goku_open
+    series: DB
+    order: 10
+    holder: GOKU
+    form: null
+    kind: solo
+    chapter_start: 1
+    chapter_end: 3
+    reign_chapters: 3
+    reign_confidence: firm
+    bar_fill: 0.015
+    metric_right: "ch. 1-3"
+    portrait: goku_kid
+
+  - id: demo_roshi
+    series: DB
+    order: 20
+    holder: MASTER ROSHI
+    form: null
+    kind: solo
+    chapter_start: 4
+    chapter_end: 8
+    reign_chapters: 121
+    reign_confidence: approx
+    bar_fill: 0.62
+    metric_right: "ch. 4-125"
+    portrait: master_roshi
