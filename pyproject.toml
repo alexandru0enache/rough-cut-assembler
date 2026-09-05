@@ -36,14 +36,18 @@ subs = [
     "static-ffmpeg>=2.5",
 ]
 # Hybrid semantic search over the subtitle index (assembler/roughcut/embeddings.py).
-# Currently satisfied transitively by faster-whisper's own deps on this box, but
-# embeddings.py imports these directly - declare them so a future dependency
-# bump can't silently drop one out from under it.
+# numpy/tokenizers/huggingface-hub are currently satisfied transitively by
+# faster-whisper's own deps on this box, but embeddings.py imports them
+# directly - declare them so a future dependency bump can't silently drop one
+# out from under it. onnxruntime-gpu (not plain onnxruntime - the two packages
+# are mutually exclusive) so CUDAExecutionProvider is available on a box with
+# an NVIDIA GPU; it still carries CPUExecutionProvider and falls back cleanly
+# on a box without one.
 semantic = [
     "numpy>=1.24",
     "tokenizers>=0.15",
     "huggingface-hub>=0.20",
-    "onnxruntime>=1.16",
+    "onnxruntime-gpu>=1.16",
 ]
 
 [project.scripts]
