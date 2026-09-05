@@ -1,4 +1,4 @@
-# Phase 5 — get the actual cut into the NLE (was "Resolve FCPXML hand-off")
+# Phase 5 — XML export of the cut (NLE + AE-likes) (was "Resolve FCPXML hand-off")
 
 **Retargeted 2026-09-05: the edit is in Adobe Premiere now, not Resolve.**
 Building the actual HUD/scouter graphics natively in a compositor is still
@@ -33,9 +33,10 @@ decisions (which page, how long) live as real Premiere clips instead.
   first, use its explicit per-page ranges instead).
 - The VO (`timeline.json`'s `audio` field) → one audio clip on an audio track,
   starting at frame 0.
-- `title` beats and any future HUD-card beat → **markers**, not clips (a
-  marker at the beat's start carrying its id + spoken text + `spec` if any).
-  No placeholder graphic is generated - that's the compositing question,
+- `title` beats, `slate` beats (a manga/render beat that resolved to zero
+  pages), and any future HUD-card beat → **markers**, not clips (a marker at
+  the beat's start carrying its id + spoken text + `spec` if any). No
+  placeholder graphic is generated - that's the compositing question,
   deliberately deferred.
 
 **Out (for now):**
@@ -60,11 +61,15 @@ test-import, not a file existing.**
    - one `Track` (kind `Video`) of `Clip`s (`media_reference =
      ExternalReference(target_url=<abs page path>)`, `source_range =
      TimeRange(start_time=0, duration=<clip's own length>)`) for every
-     manga/render beat's pages, laid out back-to-back via the track's own
-     accumulating duration - OTIO tracks are sequential, so this matches
-     `timeline.json`'s beat ordering directly;
-   - one `Track` (kind `Audio`) with a single `Clip` referencing the VO file;
-   - a `Marker` on the video track at each `title`/card beat's start frame.
+     manga/render beat's pages - **not simply appended**: insert an explicit
+     `Gap` for any span between one beat's `end` and the next `start`, and
+     truncate on an overlap, so absolute frame position matches
+     `timeline.json` exactly (see Gaps §1 below - this was wrong in the
+     first draft of this plan);
+   - `title` **and** `slate` beats produce a `Gap` carrying a `Marker` (see
+     Gaps §2), not a clip;
+   - one `Track` (kind `Audio`) with a single `Clip` referencing the VO file
+     (see Gaps §5 for which file, exactly).
 2. Try `otio.adapters.write_to_file(timeline, path, adapter_name="fcp_xml")`
    first (Premiere has long-standing "Final Cut Pro XML" import support in
    File > Import - confirm which schema this adapter actually emits by
@@ -85,7 +90,7 @@ test-import, not a file existing.**
    choice - don't leave both adapters "available," commit to the one that was
    actually verified in both apps.
 
-## `src/assembler/roughcut/nle_export.py` (new)
+## `src/assembler/roughcut/xml_export.py` (new)
 
 - `build_otio_timeline(timeline_json: dict) -> otio.schema.Timeline`
 - `export(timeline_json_path, out_path, *, adapter="fcp_xml")` - thin wrapper
@@ -111,3 +116,56 @@ aligned at frame 0, and markers where title/HUD beats will eventually go.
 That confirmation from you (both apps) is the actual completion signal - I
 can generate the file, but only you can confirm each app accepted it the way
 the plan intends.
+
+## Gaps found on review (2026-09-05)
+
+The first pass of this plan glossed over a few things. Resolved ones get a
+decision below; the rest are open and need an answer before/while building.
+
+1. **Beats aren't actually contiguous - "back-to-back" is wrong as stated.**
+   `timeline.json` gives every beat explicit `start`/`end` frame numbers, and
+   `roughcut check` already has a warning for adjacent beats *overlapping*
+   (a skipped script line pinned to a 1-frame sliver) - meaning gaps and
+   overlaps both really happen. Just appending clips one after another on an
+   OTIO track (as originally written) silently discards that timing and
+   packs everything airtight, which will NOT match the Remotion preview.
+   **Resolved:** insert an explicit `Gap` item for any span between one
+   beat's `end` and the next beat's `start`; on an overlap, truncate the
+   earlier clip to the next beat's `start` (matching what `check`'s warning
+   already flags as the imprecise case) rather than silently double-covering
+   the frame range.
+2. **`slate` beats aren't handled at all.** `pages.py` emits `kind: "slate"`
+   for a manga/render beat that resolved to zero pages (see
+   `build_timeline`'s `kind if rel_pages else "slate"`) - a real, expected
+   case, not an edge case. **Resolved:** treat exactly like a `title` beat -
+   a marker on a `Gap`, not a clip.
+3. **Per-page timing doesn't exist in `timeline.json` yet.** A beat's `pages`
+   is a flat list with no individual frame ranges - only the *beat's* overall
+   `start`/`end`. "Same math `RoughCut.tsx` already does" means this
+   exporter would have to **duplicate** `RoughCut.tsx`'s even-split
+   calculation in Python, a second copy of the same logic that can drift out
+   of sync with the TypeScript original. **Open:** either accept the
+   duplication (small, well-tested function, low risk) or make this phase
+   depend on [beat-timing-control](../beat-timing-control/00_overview.md)
+   landing first so `timeline.json` itself carries per-page ranges and both
+   RoughCut.tsx and this exporter read the same precomputed numbers. Leaning
+   toward the dependency - duplicated timing math is exactly the kind of
+   thing that quietly drifts.
+4. **No Ken-Burns motion in the export - set this expectation explicitly.**
+   The Remotion preview pans/zooms each manga page; a plain still-image
+   clip/layer in Premiere/AE has none of that. The editor should not open
+   this expecting parity with `roughcut.mp4`'s motion - it's the same
+   *timing*, not the same *look*. Worth a line in whatever hand-off note
+   goes with the export, not a code change.
+5. **Which audio file gets referenced is unspecified.** `timeline.json`'s
+   `audio` field records whatever path was passed to `pages` - but
+   `sync-timeline.mjs` transcodes ALAC to AAC into
+   `public/roughcut/audio.m4a` for Remotion because its ffmpeg can't decode
+   ALAC. **Open:** decide whether the exporter references the original VO
+   (simplest, correct provided Premiere/AE can decode it - both generally
+   handle ALAC fine, unlike Remotion's bundled ffmpeg) or that transcoded
+   copy. Leaning toward the original VO; confirm during implementation.
+6. **File path format per adapter/app is unverified.** OTIO's
+   `ExternalReference.target_url` - a raw Windows path, a `file://` URI, or
+   something adapter-specific - isn't nailed down. Part of the real
+   verification pass (§3), not something to assume up front.
