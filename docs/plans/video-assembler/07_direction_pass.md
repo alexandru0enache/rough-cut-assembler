@@ -42,8 +42,8 @@ render as a clean card, no manga, no card.
 **Direction pass** — no NLE, no Remotion open. Go beat by beat:
 
 ```
-gfxorch roughcut direct <events.yaml> --out <dir> --report   # list undirected beats
-gfxorch roughcut direct <events.yaml> --out <dir>            # seed blank spec skeletons
+assembler roughcut direct <events.yaml> --out <dir> --report   # list undirected beats
+assembler roughcut direct <events.yaml> --out <dir>            # seed blank spec skeletons
 ```
 
 Fill `visual / motion / fx / source / cut_on / notes` on each beat — however

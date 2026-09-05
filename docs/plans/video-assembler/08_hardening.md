@@ -11,7 +11,7 @@ Closes the gaps found before committing to a full 16-min run.
   parsing, `build_timeline` schema / titles / card-once / page-cursor /
   overrides). Fake manga tree + real `load_events` fixtures. `pytest` = 42 total.
 
-- **`gfxorch roughcut check <events> --out <dir>`** — static wiring check over
+- **`assembler roughcut check <events> --out <dir>`** — static wiring check over
   whatever artifacts exist. **Problems** (exit 1): non-monotonic alignment,
   duplicate beat ids, beat → unknown event, para index out of range, caption
   past `durationInFrames`, missing page file on disk, a `card` set on ≠1 beat.
