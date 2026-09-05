@@ -1,4 +1,4 @@
-"""Unit tests for the rough-cut assembler (gfxorch.roughcut.*)."""
+"""Unit tests for the rough-cut assembler (assembler.roughcut.*)."""
 
 from __future__ import annotations
 
@@ -6,10 +6,10 @@ import textwrap
 
 import pytest
 
-from gfxorch.model import load_events
-from gfxorch.roughcut import align as rc_align
-from gfxorch.roughcut import beats as rc_beats
-from gfxorch.roughcut import pages as rc_pages
+from assembler.model import load_events
+from assembler.roughcut import align as rc_align
+from assembler.roughcut import beats as rc_beats
+from assembler.roughcut import pages as rc_pages
 
 # --------------------------------------------------------------------------
 #  fixtures

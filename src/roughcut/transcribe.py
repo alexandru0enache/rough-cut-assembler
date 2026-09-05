@@ -1,6 +1,6 @@
 """Word-level VO transcription via faster-whisper.
 
-    from gfxorch.roughcut.transcribe import transcribe
+    from assembler.roughcut.transcribe import transcribe
     transcribe("vo.m4a", "out/transcript.json")
 
 Output JSON:
@@ -17,8 +17,9 @@ than the transcript, or ``force=True``.
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
+
+from .. import config
 
 # static-ffmpeg ships ffmpeg/ffprobe binaries inside the venv; add them to PATH
 # so anything shelling out to ffmpeg works even though the system install is broken.
@@ -54,7 +55,7 @@ def transcribe(
     from faster_whisper import WhisperModel
 
     # int8 on CPU is the safe default; float16 needs a working CUDA build.
-    device = "cuda" if os.environ.get("GFXORCH_WHISPER_CUDA") else "cpu"
+    device = "cuda" if config.env("WHISPER_CUDA") else "cpu"
     ctype = compute_type or ("float16" if device == "cuda" else "int8")
 
     wm = WhisperModel(model, device=device, compute_type=ctype)

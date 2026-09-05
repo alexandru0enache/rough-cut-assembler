@@ -2,7 +2,7 @@ import textwrap
 
 import pytest
 
-from gfxorch.model import EventsError, load_events
+from assembler.model import EventsError, load_events
 
 MINIMAL = """
 meta:

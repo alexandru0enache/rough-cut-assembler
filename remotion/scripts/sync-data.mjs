@@ -19,6 +19,7 @@ const EVENTS_YAML =
   "E:/studio_root/projects/clients/dbype/production/discussions/every_time_someone_surpassed_goku/04_make/hud_pipeline/events.yaml";
 
 const RENDER_ROOTS = (
+  process.env.ASSEMBLER_RENDER_ROOTS ||
   process.env.GFXORCH_RENDER_ROOTS ||
   "F:/assets/Assets/images/renders/db renders and others;F:/assets/Assets/images/renders/anime chars renders"
 )
