@@ -26,8 +26,8 @@ Automate the mechanical ~50% of the edit: transcribe the VO, find where each of 
 ## Decisions locked
 
 - Transcription: **automated (faster-whisper)**.
-- Tool home: `dbype/_pipeline/rough_cut_assembler/` (`src/gfxorch/roughcut/`); package/command stays `gfxorch`.
-- Fact-check: research pass over the local Fandom corpus (`gfxorch wiki`, Phase 9), Kanzenshuu for targeted lookups.
+- Tool home: `dbype/_pipeline/rough_cut_assembler/` (`src/assembler/roughcut/`); package/command renamed `gfxorch` → `assembler` 2026-09-05, see `docs/plans/rename-to-assembler/`.
+- Fact-check: research pass over the local Fandom corpus (`assembler wiki`, Phase 9), Kanzenshuu for targeted lookups.
 - v1 video track: manga pages keyed by chapter + slates. Screen recordings / anime clips are **not** auto-placed.
 
 ## Phase order
@@ -39,27 +39,27 @@ Automate the mechanical ~50% of the edit: transcribe the VO, find where each of 
 | 2 | Beat map (`beats.yaml`) | [03_beats_pages.md](03_beats_pages.md) | **done** — `roughcut/beats.py` (auto-seed + load) |
 | 3 | Manga page selection (`timeline.json`) | [03_beats_pages.md](03_beats_pages.md) | **done** — `roughcut/{pages,cbr}.py`, `.cbr` via 7-Zip |
 | 4 | Rough-cut render (Remotion) | [04_roughcut_render.md](04_roughcut_render.md) | **done** — `RoughCut.tsx` + `sync-timeline.mjs` + `render-roughcut.mjs` |
-| 5 | Resolve FCPXML hand-off | [05_resolve_export.md](05_resolve_export.md) | after v1 trusted |
-| 6 | Anime subtitle index (Layer 2) | [06_anime_subs.md](06_anime_subs.md) | **in progress** — `roughcut/subs.py` + `roughcut subs` build/query; DB text extract verified, DBZ/Super PGS→OCR path (`pgsrip`) coded, not yet run at scale |
+| 5 | XML export of the cut, NLE + AE-likes (was "Resolve FCPXML") | [05_xml_export.md](05_xml_export.md) | **planned** — cuts-only (no rendered graphics), OTIO-built, real import test in both Premiere and After Effects is the completion signal |
+| 6 | Anime subtitle index (Layer 2) | [06_anime_subs.md](06_anime_subs.md) | **done** — `roughcut/subs.py` + `roughcut subs` build/query; all 619 TV episodes + movies OCR'd/indexed 2026-09-05 |
 | 7 | Direction pass (shot specs) | [07_direction_pass.md](07_direction_pass.md) | **done** — `spec` blocks in beats.yaml, `roughcut direct`, `overrides.yaml`, spec chips in the cut |
 | 8 | Hardening | [08_hardening.md](08_hardening.md) | **done** — `roughcut check`, `tests/test_roughcut.py` (15), page cursor, rules-block titles, `render:` source, card portraits |
-| 9 | Local research corpus | [09_research_corpus.md](09_research_corpus.md) | **done** — `gfxorch wiki build/query/get`, 9,541-article SQLite FTS5 from the Fandom dump |
+| 9 | Local research corpus | [09_research_corpus.md](09_research_corpus.md) | **done** — `assembler wiki build/query/get`, 9,541-article SQLite FTS5 from the Fandom dump |
 
 Demo: `roughcut_demo/` runs Phases 1–3 end-to-end against a 130 s VO clip +
 24-line script excerpt → `roughcut_demo/out/timeline.json`. `python roughcut_demo/run_demo.py`,
-then `gfxorch roughcut check <events> --out roughcut_demo/out`.
+then `assembler roughcut check <events> --out roughcut_demo/out`.
 
 ## CLI surface
 
-Extend `src/gfxorch/cli.py` with a `roughcut` group:
+Extend `src/assembler/cli.py` with a `roughcut` group:
 
 ```
-gfxorch roughcut transcribe     # Phase 1
-gfxorch roughcut align          # Phase 1
-gfxorch roughcut beats          # Phase 2  (seed beats.yaml)
-gfxorch roughcut pages          # Phase 3  (-> timeline.json)
-gfxorch roughcut subs           # Phase 6  (build the anime subtitle index)
-gfxorch roughcut subs --query "..."   # Phase 6  (search it)
+assembler roughcut transcribe     # Phase 1
+assembler roughcut align          # Phase 1
+assembler roughcut beats          # Phase 2  (seed beats.yaml)
+assembler roughcut pages          # Phase 3  (-> timeline.json)
+assembler roughcut subs           # Phase 6  (build the anime subtitle index)
+assembler roughcut subs --query "..."   # Phase 6  (search it)
 ```
 
 `remotion/package.json`: `npm run roughcut` = `sync-timeline.mjs` + `render-roughcut.mjs`.
@@ -69,8 +69,8 @@ gfxorch roughcut subs --query "..."   # Phase 6  (search it)
 | Path | Change |
 |---|---|
 | `notes/fact_check_report.html` | rewrite — per-sentence, sourced (Phase 0) |
-| `src/gfxorch/roughcut/{__init__,transcribe,align,beats,pages,subs}.py` | new subpackage |
-| `src/gfxorch/cli.py` | add `roughcut` command group |
+| `src/assembler/roughcut/{__init__,transcribe,align,beats,pages,subs}.py` | new subpackage |
+| `src/assembler/cli.py` | add `roughcut` command group |
 | `pyproject.toml` | `[roughcut]` optional dep = `faster-whisper` |
 | `04_make/hud_pipeline/roughcut/` | new build dir — see phase files |
 | `remotion/scripts/{sync-timeline,render-roughcut,edl-export}.mjs` | new |
@@ -81,10 +81,10 @@ gfxorch roughcut subs --query "..."   # Phase 6  (search it)
 
 - `remotion/scripts/sync-data.mjs` — `events.yaml` parse + card-prop derivation + portrait resolver. `sync-timeline.mjs` calls the same path so cards stay consistent.
 - `remotion/src/PowerStreakCard.tsx` — dropped into `RoughCut.tsx` as-is.
-- `src/gfxorch/model.py` / `config.py` — event loading, render-root config.
+- `src/assembler/model.py` / `config.py` — event loading, render-root config.
 
 ## Boundaries
 
 - Ken-Burns manga pages are a legible stand-in for a real edit, not a finished look.
 - Phase 6 only *suggests* anime timecodes; it never places clips.
-- No audio track in the Remotion rough cut — the VO stays in Resolve.
+- No audio track in the Remotion rough cut — the VO stays in the edit app (Premiere).

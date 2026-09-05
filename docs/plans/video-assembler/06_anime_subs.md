@@ -34,13 +34,13 @@ No external SRT downloads (sync risk + defeats the "local corpus" principle).
 | Piece | Where | Notes |
 |---|---|---|
 | ffprobe / ffmpeg | venv (`static-ffmpeg`) | probe streams; extract text SRT or copy PGS to `.sup` |
-| Tesseract OCR | `C:\Program Files\Tesseract-OCR\tesseract.exe` (on PATH) | `eng.traineddata` present; override dir with `GFXORCH_TESSERACT` |
+| Tesseract OCR | `C:\Program Files\Tesseract-OCR\tesseract.exe` (on PATH) | `eng.traineddata` present; override dir with `ASSEMBLER_TESSERACT` |
 | `pgsrip` | new `[subs]` extra | `.sup` → `.srt` via Tesseract; consumes `.sup` directly so **MKVToolNix is not required** |
 
 No `mkvextract` / MKVToolNix: ffmpeg copies the PGS bitstream to `.sup`, and
 `pgsrip` OCRs the `.sup`.
 
-## `src/gfxorch/roughcut/subs.py`
+## `src/assembler/roughcut/subs.py`
 
 ### 1. Walk + classify
 
@@ -93,7 +93,7 @@ exactly once per episode.
 
 Parse each cache SRT into `{series, episode, n, start_ms, end_ms, text}`.
 Load all rows into `subs_dir()/anime.sqlite` — same FTS5 pattern as
-`gfxorch/wiki.py`:
+`assembler/wiki.py`:
 
 ```sql
 CREATE TABLE lines(
@@ -120,17 +120,17 @@ Fold into the existing `roughcut` group ( `direct`-style flags, not a
 sub-subparser):
 
 ```
-gfxorch roughcut subs  --out <dir> [--anime-root P] [--series DB,DBZ]
+assembler roughcut subs  --out <dir> [--anime-root P] [--series DB,DBZ]
                        [--episodes 1-50] [--force]      # build / widen the index
-gfxorch roughcut subs  --query "goku super saiyan namek" [--series DBZ] [--limit 20]
+assembler roughcut subs  --query "goku super saiyan namek" [--series DBZ] [--limit 20]
 ```
 
 `--out` is unused by `subs` except for symmetry; the index lives under
-`GFXORCH_SUBS_DIR` (default `~/.gfxorch/subs/`), like the wiki corpus.
+`ASSEMBLER_SUBS_DIR` (default `~/.gfxorch/subs/`), like the wiki corpus.
 
 ## config.py
 
-- `subs_dir()` → `GFXORCH_SUBS_DIR` or `~/.gfxorch/subs/`.
+- `subs_dir()` → `ASSEMBLER_SUBS_DIR` or `~/.gfxorch/subs/`.
 - `series_for(path)` → the folder-name keyword classifier (also reused by Layer 1).
 
 ## pyproject.toml
@@ -149,7 +149,7 @@ message naming the download if `tesseract` is not found.
 
 ## Verification
 
-- `gfxorch roughcut subs --series DB --episodes 1-3` produces
+- `assembler roughcut subs --series DB --episodes 1-3` produces
   `~/.gfxorch/subs/srt/DB/00{1,2,3}.srt` (direct text extract, no OCR) and an
   `anime.sqlite` with those lines.
 - one PGS episode (`--series DBZ --episodes 1`) OCRs to a plausible SRT; a

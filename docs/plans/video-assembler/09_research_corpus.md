@@ -6,7 +6,7 @@ no live scraping, no rate limits.
 ## Build
 
 ```
-gfxorch wiki build --wiki dragonball
+assembler wiki build --wiki dragonball
 ```
 
 1. Downloads Fandom's static current-revisions dump
@@ -18,7 +18,7 @@ gfxorch wiki build --wiki dragonball
    heading from the full `body`), loads into SQLite.
 4. Deletes the XML unless `--keep-xml`.
 
-Result: `~/.gfxorch/wiki/dragonball.sqlite` (override dir with `GFXORCH_WIKI_DIR`).
+Result: `~/.gfxorch/wiki/dragonball.sqlite` (override dir with `ASSEMBLER_WIKI_DIR`).
 Measured: **9,541 articles**, 13,114 redirects, 82 MB, ~3 min end to end.
 
 Schema: `pages(id, title, lead, body, redirect, length)` + an external-content
@@ -27,10 +27,10 @@ FTS5 index `fts(title, lead, body)` (`porter unicode61`).
 ## Query
 
 ```
-gfxorch wiki query "Ultra Divine Water King Piccolo Goku"     # OR + bm25, natural language
-gfxorch wiki query "Tenshinhan NEAR/5 forfeit" --all          # raw FTS5 syntax passes through
-gfxorch wiki get   "Ultra Divine Water"                       # full article text (follows redirects)
-gfxorch wiki stats
+assembler wiki query "Ultra Divine Water King Piccolo Goku"     # OR + bm25, natural language
+assembler wiki query "Tenshinhan NEAR/5 forfeit" --all          # raw FTS5 syntax passes through
+assembler wiki get   "Ultra Divine Water"                       # full article text (follows redirects)
+assembler wiki stats
 ```
 
 Bare terms are stop-word filtered, OR-ed, and ranked by bm25 (title weighted

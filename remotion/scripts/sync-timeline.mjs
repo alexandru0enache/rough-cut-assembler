@@ -105,7 +105,7 @@ for (const beat of tl.beats) {
 // The source VO is often ALAC (Apple Lossless), which Remotion's bundled
 // ffmpeg can't decode - re-encode to plain AAC once.
 function findFfmpeg() {
-  const env = process.env.GFXORCH_FFMPEG;
+  const env = process.env.ASSEMBLER_FFMPEG || process.env.GFXORCH_FFMPEG;
   if (env && existsSync(env)) return env;
   const staticFf = resolve(ROOT, "../.venv/Lib/site-packages/static_ffmpeg/bin/win32/ffmpeg.EXE");
   if (existsSync(staticFf)) return staticFf;

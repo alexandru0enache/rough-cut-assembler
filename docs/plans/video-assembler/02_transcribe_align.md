@@ -1,6 +1,6 @@
 # Phase 1 — VO transcription + script alignment
 
-New subpackage `src/gfxorch/roughcut/`. Build artifacts under `04_make/hud_pipeline/roughcut/` (next to `events.yaml`).
+New subpackage `src/assembler/roughcut/`. Build artifacts under `04_make/hud_pipeline/roughcut/` (next to `events.yaml`).
 
 ## `transcribe.py`
 
@@ -39,13 +39,13 @@ roughcut = [
 
 `pip install -e ".[roughcut]"` into `.venv` (Python 3.12.10). Done. First
 `transcribe` run downloads `small.en` (~460 MB) to the HF cache. CPU int8 by
-default; set `GFXORCH_WHISPER_CUDA=1` for GPU float16.
+default; set `ASSEMBLER_WHISPER_CUDA=1` for GPU float16.
 
 ## Verification
 
 ```
-gfxorch roughcut transcribe
-gfxorch roughcut align
+assembler roughcut transcribe
+assembler roughcut align
 ```
 
 - `transcript.json` `duration` ≈ VO length; first word `start` near 0, last word `end` near `duration`.

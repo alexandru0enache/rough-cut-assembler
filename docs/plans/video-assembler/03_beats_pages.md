@@ -23,7 +23,7 @@ All 33 non-grid events present; spans ordered and non-overlapping; union roughly
 
 - For each event, resolve chapter span: `chapters` from `beats.yaml` if set, else `events.yaml` `chapter_start..chapter_end` mapped to continuous numbers (`series == "DBZ"` → `+ 194`).
 - `find_chapters(root, span)` matches both pre-extracted `Chapter <N> - Title/` dirs **and** `Chapter <N> - Title.cbr` archives (dir wins when both exist). **Only arcs 09–12 (Saiyan/Freeza/Cell/Majin Boo) are pre-extracted; arcs 01–08 and 13–20 are `.cbr` only** — so `.cbr` support is mandatory, not optional.
-- `cbr.py`: `pages_for(chapter, cache)` returns image paths, extracting a `.cbr` once into `out/cbr_cache/<stem>/` via 7-Zip (`C:\Program Files\7-Zip\7z.exe`, or `GFXORCH_7Z`). RAR, so 7-Zip not `zipfile`.
+- `cbr.py`: `pages_for(chapter, cache)` returns image paths, extracting a `.cbr` once into `out/cbr_cache/<stem>/` via 7-Zip (`C:\Program Files\7-Zip\7z.exe`, or `ASSEMBLER_7Z`). RAR, so 7-Zip not `zipfile`.
 - Selection v1: `sample_pages(pages, beat_seconds)` — evenly across the collected pages at ~0.22 page/s, `min 2`, `cap 8`.
 - `roughcut/overrides.yaml` — user pins exact pages, repo-relative to the manga root:
 
