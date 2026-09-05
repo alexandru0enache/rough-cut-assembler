@@ -39,7 +39,7 @@ Automate the mechanical ~50% of the edit: transcribe the VO, find where each of 
 | 2 | Beat map (`beats.yaml`) | [03_beats_pages.md](03_beats_pages.md) | **done** — `roughcut/beats.py` (auto-seed + load) |
 | 3 | Manga page selection (`timeline.json`) | [03_beats_pages.md](03_beats_pages.md) | **done** — `roughcut/{pages,cbr}.py`, `.cbr` via 7-Zip |
 | 4 | Rough-cut render (Remotion) | [04_roughcut_render.md](04_roughcut_render.md) | **done** — `RoughCut.tsx` + `sync-timeline.mjs` + `render-roughcut.mjs` |
-| 5 | Timeline hand-off to the edit app (was "Resolve FCPXML", target is now Premiere) | [05_resolve_export.md](05_resolve_export.md) | after v1 trusted |
+| 5 | Timeline hand-off to the edit app (was "Resolve FCPXML", target is now Premiere) | [05_nle_export.md](05_nle_export.md) | **planned** — cuts-only (no rendered graphics), OTIO-built, real Premiere import test is the completion signal |
 | 6 | Anime subtitle index (Layer 2) | [06_anime_subs.md](06_anime_subs.md) | **done** — `roughcut/subs.py` + `roughcut subs` build/query; all 619 TV episodes + movies OCR'd/indexed 2026-09-05 |
 | 7 | Direction pass (shot specs) | [07_direction_pass.md](07_direction_pass.md) | **done** — `spec` blocks in beats.yaml, `roughcut direct`, `overrides.yaml`, spec chips in the cut |
 | 8 | Hardening | [08_hardening.md](08_hardening.md) | **done** — `roughcut check`, `tests/test_roughcut.py` (15), page cursor, rules-block titles, `render:` source, card portraits |
