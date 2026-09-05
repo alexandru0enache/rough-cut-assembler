@@ -1,13 +1,18 @@
 # Phase 5 — get the actual cut into the NLE (was "Resolve FCPXML hand-off")
 
 **Retargeted 2026-09-05: the edit is in Adobe Premiere now, not Resolve.**
-Compositing/graphics interchange (getting the power-streak/scouter HUD into a
-DCC natively) is explicitly **out of scope** here — see the chat that produced
-this plan and `docs/plans/gfx-per-project-split/`. This phase is only about
-one thing: **the cuts `timeline.json` already describes — which manga page or
-render shows for how long, in what order — landing in Premiere as a real,
-editable sequence.** Not a rendered video the editor conforms against; actual
-still-image clips at the right timecodes on a track they can trim.
+Building the actual HUD/scouter graphics natively in a compositor is still
+deferred (see `docs/plans/gfx-per-project-split/`) - but **the export target
+is not Premiere-only**. Premiere and After Effects are the same product
+family and both natively import the same editorial interchange XML; the same
+file this phase produces for Premiere is also an AE import, and AE turns each
+clip into a positioned, correctly-timed **layer inside a composition** - the
+exact starting point compositing work would need later. So: this phase is
+about **the cuts `timeline.json` already describes — which manga page or
+render shows for how long, in what order — landing in Premiere (and,
+verified the same way, After Effects) as a real, editable timeline.** Not a
+rendered video either app conforms against; actual still-image clips/layers
+at the right timecodes.
 
 ## Why not the Remotion `.mp4`
 
@@ -64,17 +69,21 @@ test-import, not a file existing.**
    first (Premiere has long-standing "Final Cut Pro XML" import support in
    File > Import - confirm which schema this adapter actually emits by
    inspecting its output, not by the package name alone).
-3. **Real verification, on this box** (Premiere Pro 2025 is installed): File >
-   Import the generated XML into a fresh Premiere project. Check: every clip
-   present, correct file, correct duration, correct order, markers visible
-   with the right beat id/text. If it doesn't import cleanly, fall back to
-   `adapter_name="cmx_3600"` (plain EDL - accept its limits: no markers, and
-   confirm Premiere resolves the file paths rather than asking for offline
-   media/reels).
-4. Only after a real successful import: wire this into the CLI (`assembler
+3. **Real verification, on this box** (Premiere Pro 2025 and After Effects
+   2025 are both installed): File > Import the generated XML into a fresh
+   Premiere project **and separately into After Effects**. Premiere check:
+   every clip present, correct file, correct duration, correct order, markers
+   visible with the right beat id/text. AE check: the same, as layers in the
+   composition it creates from the import - since that comp is the future
+   entry point for compositing work, its layer order/timing matters just as
+   much as Premiere's. If either import is wrong, try
+   `adapter_name="cmx_3600"` next (plain EDL - accept its limits: no markers,
+   and confirm both apps resolve the file paths rather than asking for
+   offline media/reels).
+4. Only after both real imports succeed: wire this into the CLI (`assembler
    roughcut export --out <dir>` or similar) and document the working format
    choice - don't leave both adapters "available," commit to the one that was
-   actually verified.
+   actually verified in both apps.
 
 ## `src/assembler/roughcut/nle_export.py` (new)
 
@@ -95,9 +104,10 @@ test-import, not a file existing.**
 
 ## Done =
 
-A real Premiere project, imported from this export, shows every manga/render
-page as its own trimmable clip in the right place with the right duration,
-the VO aligned at frame 0, and markers where title/HUD beats will eventually
-go. That screenshot/confirmation from you is the actual completion signal -
-I can generate the file, but only you can confirm Premiere accepted it the
-way the plan intends.
+A real Premiere project **and** a real After Effects project, both imported
+from this export, each show every manga/render page as its own
+trimmable clip/layer in the right place with the right duration, the VO
+aligned at frame 0, and markers where title/HUD beats will eventually go.
+That confirmation from you (both apps) is the actual completion signal - I
+can generate the file, but only you can confirm each app accepted it the way
+the plan intends.
