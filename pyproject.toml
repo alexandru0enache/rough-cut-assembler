@@ -49,6 +49,14 @@ semantic = [
     "huggingface-hub>=0.20",
     "onnxruntime-gpu>=1.16",
 ]
+# Anime/manga/guidebook vision index (docs/plans/anime-vision-index/).
+# PySceneDetect for shot-boundary detection; opencv-python comes along as its
+# own dependency (0.7.1 dropped the separate [opencv] extra this plan
+# originally specced - confirmed 2026-09-06). WD-tagger reuses the `semantic`
+# extra's onnxruntime-gpu/huggingface-hub, no new tagger-specific dep here.
+vision = [
+    "scenedetect>=0.6",
+]
 
 [project.scripts]
 assembler = "assembler.cli:main"
