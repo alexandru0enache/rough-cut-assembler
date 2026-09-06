@@ -53,9 +53,19 @@ semantic = [
 # PySceneDetect for shot-boundary detection; opencv-python comes along as its
 # own dependency (0.7.1 dropped the separate [opencv] extra this plan
 # originally specced - confirmed 2026-09-06). WD-tagger reuses the `semantic`
-# extra's onnxruntime-gpu/huggingface-hub, no new tagger-specific dep here.
+# extra's onnxruntime-gpu/huggingface-hub. nvidia-cudnn-cu12 is needed ON TOP
+# of onnxruntime-gpu specifically for this extra: WD-tagger's ViT backbone
+# has a Conv2d patch-embedding layer, and CUDAExecutionProvider needs cuDNN
+# to run Conv nodes - unlike embeddings.py's MiniLM (a BERT-style encoder
+# with no convolutions), which never touches cuDNN and worked without it.
+# Confirmed 2026-09-06: the base CUDA Toolkit does NOT include cuDNN: without
+# this the tagger fails at inference with "cuDNN is unavailable" ("Invalid
+# handle. Cannot load symbol cudnnCreate" if the DLLs are found but wired
+# wrong - vision_tagger.py's _register_cudnn_dll_dirs() prepends PATH with
+# these wheels' bin/ dirs, since os.add_dll_directory() alone isn't enough).
 vision = [
     "scenedetect>=0.6",
+    "nvidia-cudnn-cu12",
 ]
 
 [project.scripts]
