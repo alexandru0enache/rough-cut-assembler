@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "rough-cut-assembler"
 version = "0.1.0"
-description = "Automated rough-cut assembler for the DBYPE Dragon Ball videos: VO + script -> timed edit blueprint + motion graphics + Remotion rough cut. Package/command: `assembler` (was `gfxorch`)."
+description = "Automated rough-cut assembler for the DBHype Dragon Ball videos: VO + script -> timed edit blueprint + motion graphics + Remotion rough cut. Package/command: `assembler` (was `gfxorch`)."
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "pyyaml>=6.0",

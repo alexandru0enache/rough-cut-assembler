@@ -26,7 +26,7 @@ Automate the mechanical ~50% of the edit: transcribe the VO, find where each of 
 ## Decisions locked
 
 - Transcription: **automated (faster-whisper)**.
-- Tool home: `dbype/_pipeline/rough_cut_assembler/` (`src/assembler/roughcut/`); package/command renamed `gfxorch` → `assembler` 2026-09-05, see `docs/plans/rename-to-assembler/`.
+- Tool home: `dbhype/_pipeline/rough_cut_assembler/` (`src/assembler/roughcut/`); package/command renamed `gfxorch` → `assembler` 2026-09-05, see `docs/plans/rename-to-assembler/`.
 - Fact-check: research pass over the local Fandom corpus (`assembler wiki`, Phase 9), Kanzenshuu for targeted lookups.
 - v1 video track: manga pages keyed by chapter + slates. Screen recordings / anime clips are **not** auto-placed.
 

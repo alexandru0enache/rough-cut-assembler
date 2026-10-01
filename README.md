@@ -1,6 +1,6 @@
 # rough-cut-assembler
 
-Automated rough-cut assembler for the DBYPE Dragon Ball videos. Turns a recorded
+Automated rough-cut assembler for the DBHype Dragon Ball videos. Turns a recorded
 VO + the script + the manga / render / anime libraries into a **timed edit
 blueprint** (`timeline.json`), a watchable **Remotion rough cut**, and the
 episode's **motion graphics** (power-streak card, scouter HUD).
@@ -10,7 +10,7 @@ The package and CLI are named **`assembler`** (through 2026-09-05 it was
 graphics straight into DaVinci Resolve's Fusion compositor - see "History"
 below). The repo itself has always been `rough-cut-assembler`.
 
-Lives at `dbype/_pipeline/rough_cut_assembler/`, the local-build counterpart to
+Lives at `DBHype/_pipeline/rough_cut_assembler/`, the local-build counterpart to
 `_pipeline/cloud_pipeline/` (project orchestration). Per-video data stays in the
 project at `04_make/hud_pipeline/events.yaml`.
 
@@ -41,7 +41,7 @@ npm run roughcut            # sync timeline.json + render out/roughcut.mp4
 ## Setup (Python 3.12 pinned - not yet verified on newer)
 
 ```
-cd E:\studio_root\projects\clients\dbype\_pipeline\rough_cut_assembler
+cd E:\studio_root\projects\clients\DBHype\_pipeline\rough_cut_assembler
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install -U pip
 .venv\Scripts\python -m pip install -e ".[dev,roughcut,research]"

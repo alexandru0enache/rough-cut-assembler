@@ -32,7 +32,7 @@ from assembler.roughcut import pages as rc_pages  # noqa: E402
 from assembler.roughcut import transcribe as rc_transcribe  # noqa: E402
 
 REAL_VO = Path(
-    r"E:\studio_root\projects\clients\dbype\production\discussions"
+    r"E:\studio_root\projects\clients\dbhype\production\discussions"
     r"\every_time_someone_surpassed_goku\01_ingest\audio"
     r"\EverytimeSomeoneSurpassesGoku.AaronMaywald.m4a"
 )

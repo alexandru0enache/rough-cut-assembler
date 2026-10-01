@@ -17,7 +17,7 @@ NODES = [
     "Ellipse", "Rectangle", "Polygon", "BSpline",
     "ColorCorrector", "ColorGain", "BrightnessContrast", "Pixelate", "Defocus",
 ]
-OUT = r"E:\studio_root\projects\clients\dbype\_pipeline\rough_cut_assembler\node_inputs.txt"
+OUT = r"E:\studio_root\projects\clients\dbhype\_pipeline\rough_cut_assembler\node_inputs.txt"
 
 try:
     comp  # noqa: F821
