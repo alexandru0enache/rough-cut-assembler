@@ -38,6 +38,13 @@ PROMPTS = {
         "frames count as the subject when the query asks about energy, "
         "beams, or transformations."
     ),
+    "v4": (
+        "KEEP or DROP? This frame was retrieved for the query '{q}'. "
+        "Reply exactly: KEEP or DROP, then one short reason. "
+        "A frame dominated by energy, aura, or glowing effects counts "
+        "as KEEP when the query asks about beams or energy; ordinary "
+        "objects, signs, people, and landscapes do not."
+    ),
 }
 
 
@@ -48,8 +55,12 @@ def main(versions: list[str]) -> int:
     eps = {(e.series, e.number): e.path for e in subs_discover.discover()}
     results: dict[str, dict] = {}
     for v in versions:
+        if v == "ens":
+            got = run_all(cases, eps, ensemble=True)
+            results[v] = score(got, cases)
+            continue
         if v not in PROMPTS:
-            print(f"unknown prompt version {v!r} (have: {sorted(PROMPTS)})")
+            print(f"unknown prompt version {v!r} (have: {sorted(PROMPTS)} + ens)")
             return 2
         # Temporarily swap the prompt template (module reads it per call).
         import assembler.roughcut.vision_rerank as _vr
@@ -66,7 +77,7 @@ def main(versions: list[str]) -> int:
     return 0
 
 
-def run_all(cases, eps) -> list[tuple[str, str]]:
+def run_all(cases, eps, ensemble=False) -> list[tuple[str, str]]:
     from assembler.roughcut import vision_rerank as vr
 
     out = []
@@ -77,7 +88,7 @@ def run_all(cases, eps) -> list[tuple[str, str]]:
             from assembler.roughcut import vision_shots
 
             vision_shots.extract_frame(path, c["ms"], tmp)
-            verdict = vr.judge(tmp, c["query"])["keep"]
+            verdict = vr.judge(tmp, c["query"], ensemble=ensemble)["keep"]
         except Exception as exc:
             verdict = f"ERROR: {exc}"
         got = "KEEP" if verdict is True else ("DROP" if verdict is False else verdict)
