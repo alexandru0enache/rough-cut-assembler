@@ -5,7 +5,8 @@ line index** so a beat's caption / keywords can be matched to
 `{series, episode, timecode}`. It only *suggests* windows — it never places a clip.
 
 This is Layer 2 of the four-layer anime shot-selection plan (see
-[00_overview.md](00_overview.md) and HANDOFF §5.2). Layer 1 (chapter → episode
+[00_overview.md](00_overview.md) and the archived HANDOFF §5.2
+(`docs/_archive/handoff-2026-09/HANDOFF.md`). Layer 1 (chapter → episode
 map) and Layer 3 (shot boundaries + vision pick) are separate.
 
 ## The subtitle-format split (verified 2026-09-04)

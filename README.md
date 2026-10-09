@@ -51,15 +51,17 @@ Node 24 for `remotion/` (`npm ci` there). 7-Zip must be installed (`.cbr` /
 `.7z` unpacking); `static-ffmpeg` ships ffmpeg in the venv. Tesseract OCR +
 the `[subs]` extra (`pgsrip`) for the anime subtitle index.
 
-## Libraries (see `src/assembler/config.py`, override via env)
+## Libraries (see `src/assembler/config.py`; machine paths live in gitignored `paths.json`, override per-key via env)
 
-| what | default | env (falls back to the old `GFXORCH_*` name) |
+| what | `paths.json` key | env (falls back to the old `GFXORCH_*` name) |
 |---|---|---|
-| character renders | `F:\assets\Assets\images\renders\...` | `ASSEMBLER_RENDER_ROOTS` (`;`-sep) |
-| manga pages | `F:\manga\dragon_ball\Dragon Ball + Super [Complete Manga]` | `ASSEMBLER_MANGA_ROOT` |
-| anime episodes | `F:\anime\dragon_ball` | `ASSEMBLER_ANIME_ROOT` |
-| anime subtitle index | `~/.gfxorch/subs/` (on-disk path unchanged by the rename) | `ASSEMBLER_SUBS_DIR` |
-| wiki corpus | `~/.gfxorch/wiki/` (on-disk path unchanged by the rename) | `ASSEMBLER_WIKI_DIR` |
+| character renders | `render_roots` (list) | `ASSEMBLER_RENDER_ROOTS` (`;`-sep) |
+| manga pages | `manga_root` | `ASSEMBLER_MANGA_ROOT` |
+| anime episodes | `anime_root` | `ASSEMBLER_ANIME_ROOT` |
+| guidebook/art-book scans | `guidebook_root` | `ASSEMBLER_GUIDEBOOK_ROOT` |
+| anime subtitle index | `~/.gfxorch/subs/` (fixed home) | `ASSEMBLER_SUBS_DIR` |
+| wiki corpus | `~/.gfxorch/wiki/` (fixed home) | `ASSEMBLER_WIKI_DIR` |
+| vision index | `~/.gfxorch/vision/` (fixed home) | `ASSEMBLER_VISION_DIR` |
 
 ## History
 
