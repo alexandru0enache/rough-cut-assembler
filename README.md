@@ -63,6 +63,11 @@ the `[subs]` extra (`pgsrip`) for the anime subtitle index.
 | wiki corpus | `~/.gfxorch/wiki/` (fixed home) | `ASSEMBLER_WIKI_DIR` |
 | vision index | `~/.gfxorch/vision/` (fixed home) | `ASSEMBLER_VISION_DIR` |
 
+The vision DB is also committed in-repo as a durability copy
+(`roughcut_out/vision/vision.sqlite`, ~240 MB) — local-only, never pushed
+(GitHub rejects files over 100 MB). The home above stays the one the code
+reads. A second off-repo copy lives under `F:\studio_cold`.
+
 ## History
 
 The tool started as `gfxorch` ("gfx-orchestrator"): build the power-streak /
