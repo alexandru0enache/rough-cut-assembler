@@ -63,10 +63,13 @@ the `[subs]` extra (`pgsrip`) for the anime subtitle index.
 | wiki corpus | `~/.gfxorch/wiki/` (fixed home) | `ASSEMBLER_WIKI_DIR` |
 | vision index | `~/.gfxorch/vision/` (fixed home) | `ASSEMBLER_VISION_DIR` |
 
-The vision DB is also committed in-repo as a durability copy
-(`roughcut_out/vision/vision.sqlite`, ~240 MB) — local-only, never pushed
-(GitHub rejects files over 100 MB). The home above stays the one the code
-reads. A second off-repo copy lives under `F:\studio_cold`.
+On this machine the vision index's home is overridden to
+`roughcut_out/vision/` via `ASSEMBLER_VISION_DIR` (the DB plus its `shots/`,
+`frames/`, `cbr_cache/` working caches). That directory is gitignored, so the
+DB is **not** in git — an earlier commit that tracked it was stripped
+2026-10-18 to keep the repo pushable. Off-machine backup: the GitHub Release
+asset `vision-db-2026-10-07`; a further copy sits under `F:\studio_cold`.
+See `roughcut_out/README.md`.
 
 ## History
 
