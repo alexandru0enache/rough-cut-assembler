@@ -1,6 +1,6 @@
 # roughcut_demo
 
-Self-contained end-to-end run of the rough-cut assembler (`src/assembler/roughcut/`).
+Self-contained end-to-end run of the rough-cut assembler (`src/roughcut/`).
 
 ```
 .venv\Scripts\python.exe roughcut_demo\run_demo.py
@@ -19,11 +19,11 @@ Self-contained end-to-end run of the rough-cut assembler (`src/assembler/roughcu
 `inputs/overrides.yaml` pins two beats to exact ch. 4 pages — delete `out/beats.yaml`
 to re-seed from scratch. `.cbr` chapters are extracted once into `out/cbr_cache/` via 7-Zip.
 
-Direction-pass helpers (on `assembler`, not `run_demo.py`):
+Direction-pass helpers (on `roughcut`, not `run_demo.py`):
 
 ```
-assembler roughcut direct inputs/events.demo.yaml --out out --report   # list undirected beats
-assembler roughcut direct inputs/events.demo.yaml --out out            # add blank spec skeletons
+roughcut roughcut direct inputs/events.demo.yaml --out out --report   # list undirected beats
+roughcut roughcut direct inputs/events.demo.yaml --out out            # add blank spec skeletons
 ```
 
 First run downloads the `small.en` model (~460 MB) and transcribes on CPU
@@ -50,5 +50,5 @@ timecode. The VO is transcoded to AAC and played for review sync.
 - `inputs/vo_clip.m4a` is generated on first run; delete it to re-trim.
 - Point the same code at the real project by swapping `REAL_VO`, `SCRIPT`,
   `EVENTS`, `MANGA_ROOT` in `run_demo.py`, or use the CLI directly:
-  `assembler roughcut transcribe|align|beats|pages --out <dir> ...`
+  `roughcut roughcut transcribe|align|beats|pages --out <dir> ...`
 - `out/` is disposable — delete it to start clean.

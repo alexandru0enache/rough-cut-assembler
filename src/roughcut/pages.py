@@ -34,7 +34,7 @@ import re
 import shutil
 from pathlib import Path
 
-from .cbr import pages_for, find_chapters
+from dragonball_db.roughcut.cbr import pages_for, find_chapters
 
 _SPEC_CHAP = re.compile(r"ch\.?\s*0*(\d+)", re.I)
 _SPEC_PAGE = re.compile(r"p(?:age|g|p)?\.?\s*0*(\d+)\s*(?:[-–]\s*0*(\d+))?", re.I)
@@ -50,8 +50,8 @@ def spec_render(spec: dict | None) -> list[Path]:
     if not m:
         return []
     try:
-        from .. import config
-        from ..portraits import resolve_portrait
+        from dragonball_db import config
+        from .portraits import resolve_portrait
     except Exception:
         return []
     match = resolve_portrait(m.group(1).strip(), config.render_roots())

@@ -8,10 +8,10 @@ First run downloads the faster-whisper 'small.en' model (~460 MB) and
 transcribes (~15-40s of CPU). Re-runs are instant (cached).
 
 Equivalent CLI:
-    assembler roughcut transcribe --out roughcut_demo/out --audio <clip>
-    assembler roughcut align      --out roughcut_demo/out --script roughcut_demo/inputs/script.md
-    assembler roughcut beats      --out roughcut_demo/out  roughcut_demo/inputs/events.demo.yaml
-    assembler roughcut pages      --out roughcut_demo/out  roughcut_demo/inputs/events.demo.yaml --audio <clip>
+    roughcut roughcut transcribe --out roughcut_demo/out --audio <clip>
+    roughcut roughcut align      --out roughcut_demo/out --script roughcut_demo/inputs/script.md
+    roughcut roughcut beats      --out roughcut_demo/out  roughcut_demo/inputs/events.demo.yaml
+    roughcut roughcut pages      --out roughcut_demo/out  roughcut_demo/inputs/events.demo.yaml --audio <clip>
 """
 
 from __future__ import annotations
@@ -25,11 +25,11 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 sys.path.insert(0, str(REPO / "src"))
 
-from assembler.model import load_events  # noqa: E402
-from assembler.roughcut import align as rc_align  # noqa: E402
-from assembler.roughcut import beats as rc_beats  # noqa: E402
-from assembler.roughcut import pages as rc_pages  # noqa: E402
-from assembler.roughcut import transcribe as rc_transcribe  # noqa: E402
+from roughcut.model import load_events  # noqa: E402
+from roughcut import align as rc_align  # noqa: E402
+from roughcut import beats as rc_beats  # noqa: E402
+from roughcut import pages as rc_pages  # noqa: E402
+from roughcut import transcribe as rc_transcribe  # noqa: E402
 
 REAL_VO = Path(
     r"E:\studio_root\projects\clients\dbhype\production\discussions"

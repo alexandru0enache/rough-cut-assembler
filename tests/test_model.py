@@ -2,7 +2,7 @@ import textwrap
 
 import pytest
 
-from dragonball_db.model import EventsError, load_events
+from roughcut.model import EventsError, load_events
 
 MINIMAL = """
 meta:

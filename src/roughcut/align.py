@@ -4,7 +4,7 @@ The VO was read from this script, so the text is near-verbatim. A monotonic
 pointer walks the transcript word stream; for each paragraph we find the
 matching run with difflib and read its start/end times off the transcript.
 
-    from dragonball_db.roughcut.align import parse_script, align
+    from roughcut.align import parse_script, align
     paras = parse_script("script.md")
     rows  = align(paras, transcript["words"])   # [{idx,text,start,end,conf,section}]
 """

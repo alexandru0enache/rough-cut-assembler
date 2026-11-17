@@ -15,7 +15,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Optional
 
-from . import config
+from dragonball_db import config
 
 # Filename tokens that carry no identity - drop before scoring.
 _STOPWORDS = {

@@ -1,6 +1,6 @@
 """Word-level VO transcription via faster-whisper.
 
-    from dragonball_db.roughcut.transcribe import transcribe
+    from roughcut.transcribe import transcribe
     transcribe("vo.m4a", "out/transcript.json")
 
 Output JSON:
@@ -19,7 +19,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .. import config
+from dragonball_db import config
 
 # static-ffmpeg ships ffmpeg/ffprobe binaries inside the venv; add them to PATH
 # so anything shelling out to ffmpeg works even though the system install is broken.

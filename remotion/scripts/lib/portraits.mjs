@@ -1,5 +1,5 @@
 // Fuzzy character-render resolver, shared by sync-data.mjs and sync-timeline.mjs.
-// Port of assembler/portraits.py: match an events.yaml `portrait:` hint to a file
+// Port of roughcut/portraits.py: match an events.yaml `portrait:` hint to a file
 // in the render libraries by token overlap, with a small alias table.
 import { existsSync, readdirSync } from "node:fs";
 import { basename, extname, join } from "node:path";
