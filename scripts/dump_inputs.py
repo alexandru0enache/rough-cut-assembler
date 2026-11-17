@@ -4,10 +4,21 @@ Run from the Fusion page Console (Py3):
   exec(open(r"C:\\Users\\enach\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\dump_inputs.py").read())
 
 Creates one of each node, lists its inputs, deletes it. Copy the output back.
+
+Output location is NOT hardcoded: set DRAGONBALL_NODE_INPUTS_OUT to write
+anywhere you like, otherwise it lands at the repo root's node_inputs.txt
+(scripts/ -> repo root).
 """
+
+import os
+from pathlib import Path
 
 # Loader omitted on purpose: adding one pops a file browser, and its IDs are
 # already captured in node_inputs.txt.
+OUT = os.environ.get("DRAGONBALL_NODE_INPUTS_OUT") or str(
+    Path(__file__).resolve().parents[1] / "node_inputs.txt"
+)
+
 NODES = [
     "sRectangle", "sEllipse", "sNGon", "sBSpline", "sStar", "sPolygon",
     "sOutline", "sRender", "sMerge", "sTransform", "sDuplicate",
@@ -17,7 +28,6 @@ NODES = [
     "Ellipse", "Rectangle", "Polygon", "BSpline",
     "ColorCorrector", "ColorGain", "BrightnessContrast", "Pixelate", "Defocus",
 ]
-OUT = r"E:\studio_root\projects\clients\dbhype\_pipeline\rough_cut_assembler\node_inputs.txt"
 
 try:
     comp  # noqa: F821

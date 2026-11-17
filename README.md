@@ -41,7 +41,7 @@ npm run roughcut            # sync timeline.json + render out/roughcut.mp4
 ## Setup (Python 3.12 pinned - not yet verified on newer)
 
 ```
-cd E:\studio_root\projects\clients\DBHype\_pipeline\rough_cut_assembler
+cd path/to/rough_cut_assembler     # the repo root (where pyproject.toml lives)
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install -U pip
 .venv\Scripts\python -m pip install -e ".[dev,roughcut,research]"
@@ -51,25 +51,37 @@ Node 24 for `remotion/` (`npm ci` there). 7-Zip must be installed (`.cbr` /
 `.7z` unpacking); `static-ffmpeg` ships ffmpeg in the venv. Tesseract OCR +
 the `[subs]` extra (`pgsrip`) for the anime subtitle index.
 
-## Libraries (see `src/assembler/config.py`; machine paths live in gitignored `paths.json`, override per-key via env)
+## Libraries (see `dragonball_db/config.py`; machine paths live in gitignored `paths.json`, override per-key via env)
 
-| what | `paths.json` key | env (falls back to the old `GFXORCH_*` name) |
+`paths.json` lives in the `dragon_ball_database` repo (the DB owns the shared
+config); the assembler reads it through `dragonball_db.config`. Override any
+single key with a `DRAGONBALL_<NAME>` env var (falls back to the old
+`ASSEMBLER_*` / `GFXORCH_*` names):
+
+| what | `paths.json` key | env (falls back to old `ASSEMBLER_*` / `GFXORCH_*`) |
 |---|---|---|
-| character renders | `render_roots` (list) | `ASSEMBLER_RENDER_ROOTS` (`;`-sep) |
-| manga pages | `manga_root` | `ASSEMBLER_MANGA_ROOT` |
-| anime episodes | `anime_root` | `ASSEMBLER_ANIME_ROOT` |
-| guidebook/art-book scans | `guidebook_root` | `ASSEMBLER_GUIDEBOOK_ROOT` |
-| anime subtitle index | `~/.gfxorch/subs/` (fixed home) | `ASSEMBLER_SUBS_DIR` |
-| wiki corpus | `~/.gfxorch/wiki/` (fixed home) | `ASSEMBLER_WIKI_DIR` |
-| vision index | `~/.gfxorch/vision/` (fixed home) | `ASSEMBLER_VISION_DIR` |
+| character renders | `render_roots` (list) | `DRAGONBALL_RENDER_ROOTS` (`;`-sep) |
+| manga pages | `manga_root` | `DRAGONBALL_MANGA_ROOT` |
+| anime episodes | `anime_root` | `DRAGONBALL_ANIME_ROOT` |
+| guidebook/art-book scans | `guidebook_root` | `DRAGONBALL_GUIDEBOOK_ROOT` |
+| anime subtitle index | `~/.gfxorch/subs/` (fixed home) | `DRAGONBALL_SUBS_DIR` |
+| wiki corpus | `~/.gfxorch/wiki/` (fixed home) | `DRAGONBALL_WIKI_DIR` |
+| vision index | `~/.gfxorch/vision/` (fixed home) | `DRAGONBALL_VISION_DIR` |
 
 On this machine the vision index's home is overridden to
-`roughcut_out/vision/` via `ASSEMBLER_VISION_DIR` (the DB plus its `shots/`,
+`roughcut_out/vision/` via `DRAGONBALL_VISION_DIR` (the DB plus its `shots/`,
 `frames/`, `cbr_cache/` working caches). That directory is gitignored, so the
 DB is **not** in git — an earlier commit that tracked it was stripped
 2026-10-18 to keep the repo pushable. Off-machine backup: the GitHub Release
 asset `vision-db-2026-10-07`; a further copy sits under `F:\studio_cold`.
 See `roughcut_out/README.md`.
+
+### Demo / script paths (also not hardcoded)
+
+`roughcut_demo/run_demo.py` takes `--vo <clip>` (or `DRAGONBALL_DEMO_VO`) for the
+real voiceover and `--manga-root <dir>` (or `config.manga_root()`).
+`scripts/dump_inputs.py` writes to `DRAGONBALL_NODE_INPUTS_OUT`, defaulting to
+the repo root's `node_inputs.txt`.
 
 ## History
 

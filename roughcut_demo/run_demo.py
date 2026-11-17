@@ -2,6 +2,9 @@
 
     .venv\\Scripts\\python.exe roughcut_demo\\run_demo.py
 
+Paths are NOT hardcoded: --vo <clip> (or DRAGONBALL_DEMO_VO) for the real VO,
+--manga-root <dir> (or config.manga_root()) for the manga library.
+
 Runs the four pipeline steps against a ~130s clip of the real VO and a
 24-line script excerpt, writing everything under roughcut_demo/out/.
 First run downloads the faster-whisper 'small.en' model (~460 MB) and
@@ -16,6 +19,7 @@ Equivalent CLI:
 
 from __future__ import annotations
 
+import argparse
 import json
 import subprocess
 import sys
@@ -25,18 +29,13 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 sys.path.insert(0, str(REPO / "src"))
 
-from roughcut.model import load_events  # noqa: E402
+from dragonball_db import config  # noqa: E402
+from dragonball_db.model import load_events  # noqa: E402
 from roughcut import align as rc_align  # noqa: E402
-from roughcut import beats as rc_beats  # noqa: E402
+from dragonball_db.roughcut import beats as rc_beats  # noqa: E402
 from roughcut import pages as rc_pages  # noqa: E402
 from roughcut import transcribe as rc_transcribe  # noqa: E402
 
-REAL_VO = Path(
-    r"E:\studio_root\projects\clients\dbhype\production\discussions"
-    r"\every_time_someone_surpassed_goku\01_ingest\audio"
-    r"\EverytimeSomeoneSurpassesGoku.AaronMaywald.m4a"
-)
-MANGA_ROOT = Path(r"F:\manga\dragon_ball\Dragon Ball + Super [Complete Manga]")
 CLIP_SECONDS = 130
 FPS = 30
 
@@ -44,6 +43,41 @@ OUT = HERE / "out"
 SCRIPT = HERE / "inputs" / "script.md"
 EVENTS = HERE / "inputs" / "events.demo.yaml"
 CLIP = HERE / "inputs" / "vo_clip.m4a"
+
+
+def _vo_path(cli_value: str | None) -> Path | None:
+    """Real voiceover clip to trim the demo from.
+
+    No machine path is hardcoded here. Resolution order: --vo, then the
+    DRAGONBALL_DEMO_VO env var, then inputs/vo_clip.m4a (handled by make_clip).
+    Returns None when neither --vo nor the env var is set, so the caller can
+    give a clear error.
+    """
+    for raw in (cli_value, config.env("DEMO_VO")):
+        if raw:
+            return Path(raw)
+    return None
+
+
+def _manga_root(cli_value: str | None) -> Path:
+    """Manga page library. --manga-root overrides config.manga_root()
+    (paths.json key `manga_root`, or the DRAGONBALL_MANGA_ROOT env var)."""
+    return Path(cli_value) if cli_value else config.manga_root()
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="run_demo.py",
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("--vo", default=None,
+                        help="real VO clip to trim the demo from "
+                             "(else DRAGONBALL_DEMO_VO, else inputs/vo_clip.m4a)")
+    parser.add_argument("--manga-root", default=None,
+                        help="override the manga page library root "
+                             "(else config.manga_root())")
+    return parser
 
 
 def ffmpeg_exe() -> str:
@@ -58,28 +92,39 @@ def ffmpeg_exe() -> str:
     return shutil.which("ffmpeg") or "ffmpeg"
 
 
-def make_clip() -> Path:
+def make_clip(vo_path: Path | None) -> Path:
     if CLIP.exists():
         return CLIP
-    if not REAL_VO.exists():
-        sys.exit(f"real VO not found: {REAL_VO}\n(edit REAL_VO in this script, or drop a vo_clip.m4a into inputs/)")
-    print(f"[clip] trimming first {CLIP_SECONDS}s of the VO -> {CLIP.name}")
-    r = subprocess.run(
-        [ffmpeg_exe(), "-y", "-loglevel", "error", "-t", str(CLIP_SECONDS), "-i", str(REAL_VO), "-c", "copy", str(CLIP)],
-        capture_output=True, text=True,
-    )
-    if r.returncode != 0 or not CLIP.exists():
-        # -c copy can fail on odd cut points; re-encode
-        subprocess.run(
-            [ffmpeg_exe(), "-y", "-loglevel", "error", "-t", str(CLIP_SECONDS), "-i", str(REAL_VO), "-c:a", "aac", str(CLIP)],
-            check=True,
+    if vo_path is not None and vo_path.exists():
+        print(f"[clip] trimming first {CLIP_SECONDS}s of the VO -> {CLIP.name}")
+        r = subprocess.run(
+            [ffmpeg_exe(), "-y", "-loglevel", "error", "-t", str(CLIP_SECONDS), "-i", str(vo_path), "-c", "copy", str(CLIP)],
+            capture_output=True, text=True,
         )
-    return CLIP
+        if r.returncode != 0 or not CLIP.exists():
+            # -c copy can fail on odd cut points; re-encode
+            subprocess.run(
+                [ffmpeg_exe(), "-y", "-loglevel", "error", "-t", str(CLIP_SECONDS), "-i", str(vo_path), "-c:a", "aac", str(CLIP)],
+                check=True,
+            )
+        return CLIP
+    sys.exit(
+        "real VO not found.\n"
+        "Provide it one of:\n"
+        "  --vo <path to the .m4a>\n"
+        "  export DRAGONBALL_DEMO_VO=<path to the .m4a>\n"
+        "  drop a vo_clip.m4a into inputs/ (used automatically)\n"
+        f"(looked for {CLIP} and {vo_path})"
+    )
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    vo_path = _vo_path(args.vo)
+    manga_root = _manga_root(args.manga_root)
+
     OUT.mkdir(parents=True, exist_ok=True)
-    clip = make_clip()
+    clip = make_clip(vo_path)
 
     print("[1/4] transcribe")
     tr = rc_transcribe.transcribe(clip, OUT / "transcript.json", model="small.en")
@@ -115,7 +160,7 @@ def main() -> int:
         overrides = _yaml.safe_load(ov_path.read_text(encoding="utf-8")) or {}
         print(f"      overrides: {len(overrides)} beat(s) pinned from {ov_path.name}")
     tl = rc_pages.build_timeline(
-        beats=seeded, script_rows=rows, doc=doc, manga_root=MANGA_ROOT,
+        beats=seeded, script_rows=rows, doc=doc, manga_root=manga_root,
         out_dir=OUT, fps=FPS, duration_seconds=tr["duration"], audio_path=clip,
         overrides=overrides,
     )
