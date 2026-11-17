@@ -49,7 +49,7 @@ PROMPTS = {
 
 
 def main(versions: list[str]) -> int:
-    from assembler.roughcut import subs_discover, vision_rerank as vr, vision_shots
+    from dragonball_db.roughcut import subs_discover, vision_rerank as vr, vision_shots
 
     cases = json.loads((REPO / "docs/plans/vlm-rerank/cases.json").read_text())
     eps = {(e.series, e.number): e.path for e in subs_discover.discover()}
@@ -63,7 +63,7 @@ def main(versions: list[str]) -> int:
             print(f"unknown prompt version {v!r} (have: {sorted(PROMPTS)} + ens)")
             return 2
         # Temporarily swap the prompt template (module reads it per call).
-        import assembler.roughcut.vision_rerank as _vr
+        import dragonball_db.roughcut.vision_rerank as _vr
 
         orig = _vr._prompt
         _vr._prompt = lambda q, _t=PROMPTS[v]: _t.format(q=q)
@@ -78,14 +78,14 @@ def main(versions: list[str]) -> int:
 
 
 def run_all(cases, eps, ensemble=False) -> list[tuple[str, str]]:
-    from assembler.roughcut import vision_rerank as vr
+    from dragonball_db.roughcut import vision_rerank as vr
 
     out = []
     for c in cases:
         path = eps.get((c["series"], c["episode"]))
         tmp = Path(tempfile.mkdtemp()) / "calib.jpg"
         try:
-            from assembler.roughcut import vision_shots
+            from dragonball_db.roughcut import vision_shots
 
             vision_shots.extract_frame(path, c["ms"], tmp)
             verdict = vr.judge(tmp, c["query"], ensemble=ensemble)["keep"]

@@ -1,6 +1,6 @@
 """Word-level VO transcription via faster-whisper.
 
-    from assembler.roughcut.transcribe import transcribe
+    from dragonball_db.roughcut.transcribe import transcribe
     transcribe("vo.m4a", "out/transcript.json")
 
 Output JSON:

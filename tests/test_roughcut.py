@@ -1,4 +1,4 @@
-"""Unit tests for the rough-cut assembler (assembler.roughcut.*)."""
+"""Unit tests for the rough-cut assembler (dragonball_db.roughcut.*)."""
 
 from __future__ import annotations
 
@@ -6,10 +6,10 @@ import textwrap
 
 import pytest
 
-from assembler.model import load_events
-from assembler.roughcut import align as rc_align
-from assembler.roughcut import beats as rc_beats
-from assembler.roughcut import pages as rc_pages
+from dragonball_db.model import load_events
+from dragonball_db.roughcut import align as rc_align
+from dragonball_db.roughcut import beats as rc_beats
+from dragonball_db.roughcut import pages as rc_pages
 
 # --------------------------------------------------------------------------
 #  fixtures

@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "rough-cut-assembler"
+name = "dragon-ball-database"
 version = "0.1.0"
-description = "Automated rough-cut assembler for the DBHype Dragon Ball videos: VO + script -> timed edit blueprint + motion graphics + Remotion rough cut. Package/command: `assembler` (was `gfxorch`)."
+description = "Scrape, link, and serve the Dragon Ball database (wiki corpus, vision index, adaptation map, entity links, race traits, subtitle index) over an API. Package/command: `dragonball_db` / `dragonball` (was `assembler`)."
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "pyyaml>=6.0",
@@ -69,10 +69,10 @@ vision = [
 ]
 
 [project.scripts]
-assembler = "assembler.cli:main"
+dragonball = "dragonball_db.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/assembler"]
+packages = ["src/dragonball_db"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

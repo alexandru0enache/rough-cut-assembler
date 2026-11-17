@@ -2,7 +2,7 @@ import textwrap
 
 import pytest
 
-from assembler.model import EventsError, load_events
+from dragonball_db.model import EventsError, load_events
 
 MINIMAL = """
 meta:

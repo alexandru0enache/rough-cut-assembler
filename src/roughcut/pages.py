@@ -34,9 +34,8 @@ import re
 import shutil
 from pathlib import Path
 
-from .cbr import pages_for
+from .cbr import pages_for, find_chapters
 
-_CHAP = re.compile(r"chapter\s+0*(\d+)\b", re.I)
 _SPEC_CHAP = re.compile(r"ch\.?\s*0*(\d+)", re.I)
 _SPEC_PAGE = re.compile(r"p(?:age|g|p)?\.?\s*0*(\d+)\s*(?:[-–]\s*0*(\d+))?", re.I)
 _SPEC_RENDER = re.compile(r"render:\s*([A-Za-z0-9_\- ]+?)\s*$", re.I)
@@ -69,30 +68,6 @@ def continuous_span(event, doc) -> tuple[int, int] | None:
     if num is not None:
         off = getattr(num, "continuous_offset", 0)
     return (cs + off, (ce or cs) + off)
-
-
-def find_chapters(manga_root: str | Path, span: tuple[int, int]) -> list[Path]:
-    """Chapter sources for a continuous-number span, ordered. Source = a
-    pre-extracted ``Chapter NNN - Title/`` dir or a ``Chapter NNN - Title.cbr``
-    (dir wins when both exist)."""
-    root = Path(manga_root)
-    want = set(range(span[0], span[1] + 1))
-    by_num: dict[int, Path] = {}
-    if not root.is_dir():
-        return []
-    for arc in sorted(p for p in root.iterdir() if p.is_dir()):
-        for entry in sorted(arc.iterdir()):
-            m = _CHAP.search(entry.name)
-            if not m:
-                continue
-            num = int(m.group(1))
-            if num not in want:
-                continue
-            if entry.is_dir():
-                by_num[num] = entry
-            elif entry.suffix.lower() in {".cbr", ".cbz", ".zip", ".rar"} and num not in by_num:
-                by_num[num] = entry
-    return [by_num[n] for n in sorted(by_num)]
 
 
 def _pages_in(chapters: list[Path], cache_dir: str | Path) -> list[Path]:
