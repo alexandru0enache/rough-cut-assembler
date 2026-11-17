@@ -14,6 +14,14 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
+    "httpx>=0.27",          # FastAPI TestClient (API tests)
+]
+# API server over the data modules (docs/plans/repo-split/02_db_api_server.md).
+# Sync FastAPI + uvicorn; the DB is local SQLite so no async is needed - callers
+# reuse the data modules verbatim.
+api = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
 ]
 # Rough-cut assembler: transcribe the VO + align it to the script.
 # See docs/plans/video-assembler/. faster-whisper bundles its own ffmpeg (PyAV).
