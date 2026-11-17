@@ -6,9 +6,9 @@ import textwrap
 
 import pytest
 
-from roughcut.model import load_events
+from dragonball_db.model import load_events
 from roughcut import align as rc_align
-from roughcut import beats as rc_beats
+from dragonball_db.roughcut import beats as rc_beats
 from roughcut import pages as rc_pages
 
 # --------------------------------------------------------------------------

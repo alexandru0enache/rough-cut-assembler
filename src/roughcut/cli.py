@@ -15,7 +15,7 @@ from pathlib import Path
 
 from roughcut import __version__
 from dragonball_db import config
-from roughcut.model import EventsError, load_events
+from dragonball_db.model import EventsError, load_events
 from roughcut.portraits import resolve_portrait
 
 
@@ -84,7 +84,7 @@ def cmd_portraits(args) -> int:
 # --------------------------------------------------------------------
 def _roughcut_check(out: Path, transcript_json: Path, timed_json: Path, beats_yaml: Path, doc) -> int:
     """Static wiring / gap check over whatever artifacts exist in --out."""
-    from roughcut import beats as rc_beats
+    from dragonball_db.roughcut import beats as rc_beats
 
     problems: list[str] = []
     warns: list[str] = []
@@ -336,7 +336,7 @@ def cmd_roughcut(args) -> int:
     doc = _load(args.project_dir)
 
     if args.rc_action == "beats":
-        from roughcut import beats as rc_beats
+        from dragonball_db.roughcut import beats as rc_beats
 
         rows = json.loads(timed_json.read_text(encoding="utf-8"))
         seeded = rc_beats.seed(doc.ordered(), rows)
@@ -347,7 +347,7 @@ def cmd_roughcut(args) -> int:
 
     if args.rc_action == "direct":
         # seed a blank shot spec on every undirected beat (the "direction pass" worksheet)
-        from roughcut import beats as rc_beats
+        from dragonball_db.roughcut import beats as rc_beats
 
         beats = rc_beats.load(beats_yaml)
         rows = json.loads(timed_json.read_text(encoding="utf-8"))
@@ -390,7 +390,7 @@ def cmd_roughcut(args) -> int:
         return _roughcut_check(out, transcript_json, timed_json, beats_yaml, doc)
 
     if args.rc_action == "pages":
-        from roughcut import beats as rc_beats
+        from dragonball_db.roughcut import beats as rc_beats
         from roughcut import pages as rc_pages
         import yaml as _yaml
 
